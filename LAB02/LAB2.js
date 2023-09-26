@@ -7,16 +7,20 @@ prompt.start();
 
 prompt.get(['userChoice'], (err, result) => {
   if (err) {
-    console.error('OPPs !! There Is a error occurred here : ', err);
+    console.log();
+    console.error('  OPPs !! There Is a error occurred here : ', err);
+    console.log();
+
     return;
   }
 
   const userChoice = result.userChoice.toUpperCase();
   const CompChoice = gettingCompChoice();
 
-  console.log(`User selected: ${userChoice}`);
-  console.log(`Computer selected: ${CompChoice}`);
-
+  console.log(`<<<<--  User selected : ${userChoice}`);
+  console.log('');
+  console.log(`<<<<-- Computer selected: ${CompChoice}`);
+  console.log('');
  
 
 
@@ -27,8 +31,10 @@ prompt.get(['userChoice'], (err, result) => {
 function gettingCompChoice() {
     const ranValue = Math.random();
     if (ranValue <= 0.34) {
+       
       return 'PAPER';
     } else if (0.35<= ranValue <= 0.68) {
+    
       return 'SCISSORS';
     } else if(0.69 <= ranValue <1){
       return 'ROCK';
@@ -42,7 +48,7 @@ function gettingCompChoice() {
 
   //Case-1 There is a tie
   if(userChoice === CompChoice){
-console.log('Ooo !! its a Tie !! ');
+console.log('!---- Ooo !! its a Tie !! ');
   }
 
   // Case-2 where Computer Wins
