@@ -18,7 +18,7 @@ prompt.get(['userChoice'], (err, result) => {
   console.log(`Computer selected: ${CompChoice}`);
 
  
-});
+
 
 
 
@@ -33,7 +33,7 @@ function gettingCompChoice() {
     } else if(0.69 <= ranValue <1){
       return 'ROCK';
     }else{
-        Console.log('Something went Wrong');
+        console.log('Something went Wrong');
     }
   }
   
@@ -42,30 +42,32 @@ function gettingCompChoice() {
 
   //Case-1 There is a tie
   if(userChoice === CompChoice){
-Console.log('Ooo !! its a Tie !! ');
+console.log('Ooo !! its a Tie !! ');
   }
 
   // Case-2 where Computer Wins
 
   else if(CompChoice === 'ROCK' && userChoice ==='SCISSORS') {
-    Console.log(' ONoo ! Computer Wins ! ');
-    Console.log('  -- better Luck Next Time -- ');
+    console.log(' ONoo ! Computer Wins ! ');
+    console.log('  -- better Luck Next Time -- ');
   }
 
   else if(CompChoice === 'PAPER' && userChoice ==='ROCK') {
-    Console.log(' ONoo ! Computer Wins ! ');
-    Console.log('  -- better Luck Next Time -- ');
+    console.log(' ONoo ! Computer Wins ! ');
+    console.log('  -- better Luck Next Time -- ');
   }
 
   else if(CompChoice === 'SCISSORS' && userChoice ==='PAPER') {
-    Console.log(' ONoo ! Computer Wins ! ');
-    Console.log('  -- better Luck Next Time -- ');
+    console.log(' ONoo ! Computer Wins ! ');
+    console.log('  -- better Luck Next Time -- ');
   }
 
 
   // case -3 Where user Wins 
 
   else {
-    Console.log(' Hurray !! You Won !!');
-    Console.log('  -- Congrats ! You Did It -- ');
+    console.log(' Hurray !! You Won !!');
+    console.log('  -- Congrats ! You Did It -- ');
   }
+
+});
