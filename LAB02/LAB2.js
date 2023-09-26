@@ -37,3 +37,35 @@ function gettingCompChoice() {
     }
   }
   
+
+  // Determination of the winner of the Game by using if-else fxn
+
+  //Case-1 There is a tie
+  if(userChoice === CompChoice){
+Console.log('Ooo !! its a Tie !! ');
+  }
+
+  // Case-2 where Computer Wins
+
+  else if(CompChoice === 'ROCK' && userChoice ==='SCISSORS') {
+    Console.log(' ONoo ! Computer Wins ! ');
+    Console.log('  -- better Luck Next Time -- ');
+  }
+
+  else if(CompChoice === 'PAPER' && userChoice ==='ROCK') {
+    Console.log(' ONoo ! Computer Wins ! ');
+    Console.log('  -- better Luck Next Time -- ');
+  }
+
+  else if(CompChoice === 'SCISSORS' && userChoice ==='PAPER') {
+    Console.log(' ONoo ! Computer Wins ! ');
+    Console.log('  -- better Luck Next Time -- ');
+  }
+
+
+  // case -3 Where user Wins 
+
+  else {
+    Console.log(' Hurray !! You Won !!');
+    Console.log('  -- Congrats ! You Did It -- ');
+  }
