@@ -1,5 +1,23 @@
 {
   "dependencies": {
+    "express": "^4.18.2",
     "prompt": "^1.3.0"
-  }
+  },
+  "name": "expressdemo",
+  "description": "For the Whole course COMP 2068 fall2023",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jil",
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "jil07"
+  },
+  "keywords": [
+    "lesson4"
+  ]
 }
