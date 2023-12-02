@@ -18,3 +18,27 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.post('/checkAirPressure', async (req, res) => {
+    const { carId, airPressure } = req.body;
+  
+    // Replace this API endpoint with a real service for air pressure checking
+    const airPressureCheckURL = 'https://silca.cc/pages/sppc-form';
+  
+    try {
+      // Assuming the external service returns a JSON object with { status: 'ok' } on success
+      const response = await axios.post(airPressureCheckURL, { carId, airPressure });
+      if (response.data.status === 'ok') {
+        // Air pressure is fine
+        res.send('Air pressure is okay.');
+      } else {
+        // Air pressure is uneven, notify the user
+        sendNotification();
+        res.send('Uneven air pressure. Notification sent.');
+      }
+    } catch (error) {
+      console.error('Error checking air pressure:', error.message);
+      res.status(500).send('Error checking air pressure.');
+    }
+  });
+
+
