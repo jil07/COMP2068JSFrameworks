@@ -41,4 +41,25 @@ app.post('/checkAirPressure', async (req, res) => {
     }
   });
 
+  function sendNotification() {
+    const mailOptions = {
+      from: 'your-email@gmail.com',
+      to: 'user-email@example.com',
+      subject: 'Car Maintenance Notification',
+      text: 'Your car needs service. The air pressure is uneven. Visit the nearest service center.',
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending notification email:', error.message);
+      } else {
+        console.log('Notification email sent:', info.response);
+      }
+    });
+  }
+  
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+
 
