@@ -1,2 +1,67 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    function checkMaintenance() {
+      var oilChange = document.getElementById('oilChange').checked;
+      var suspensionBalance = document.getElementById('suspensionBalance').checked;
+
+      var outputElement = document.getElementById('output');
+
+      if (oilChange && suspensionBalance) {
+        outputElement.textContent = 'Your car needs an oil change and suspension balance.';
+      } else if (oilChange) {
+        outputElement.textContent = 'Your car needs an oil change.';
+      } else if (suspensionBalance) {
+        outputElement.textContent = 'Your car needs a suspension balance.';
+      } else {
+        outputElement.textContent = 'No specific maintenance needed at the moment.';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Car Maintenance Deals</h1>
+  <label>
+    <input type="checkbox" id="oilChange"> Oil Change
+  </label>
+  <label>
+    <input type="checkbox" id="suspensionBalance"> Suspension Balance
+  </label>
+  <button onclick="checkMaintenance()">Check Maintenance</button>
+  <div id="output"></div>
+</body>
+</html>
