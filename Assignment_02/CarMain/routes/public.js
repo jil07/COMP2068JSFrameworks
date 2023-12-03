@@ -1,18 +1,17 @@
 // routes/public.js
-
 const express = require('express');
 const router = express.Router();
-const Car = require('../models/car'); // Adjust the path based on your file structure
+const Car = require('../Models/car');
 
-// Route to display a list of cars
+// Public page displaying a list of cars
 router.get('/public', async (req, res) => {
-    try {
-        const cars = await Car.find();
-        res.render('public', { cars });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
+  try {
+    const cars = await Car.find();
+    res.render('public', { cars });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 module.exports = router;
