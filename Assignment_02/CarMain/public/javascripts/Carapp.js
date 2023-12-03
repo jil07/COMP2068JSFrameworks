@@ -34,3 +34,15 @@ app.post('/checkMaintenance', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+
+// Add these lines in app.js or in a dedicated route file
+const publicRoutes = require('./routes/public');
+const registerRoutes = require('./routes/register');
+const loginRoutes = require('./routes/login');
+
+app.use('/', publicRoutes);
+app.use('/register', registerRoutes);
+app.use('/login', loginRoutes);
+
+
