@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./public/javascripts/users');
 
 var app = express();
 
@@ -40,3 +40,36 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
+// app.js or index.js
+
+const express = require('express');
+const session = require('express-session');
+const passport = require('passport');
+
+const app = express();
+
+// ... (other imports and configurations)
+
+// Middleware to check user authentication status
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+});
+
+// ... (other configurations)
+
+// Use the defined routes
+app.use('/', require('./routes/index'));
+app.use('/public', require('./routes/public'));
+app.use('/auth', require('./routes/auth'));
+app.use('/cars', require('./routes/cars'));
+
+// ... (other configurations)
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
