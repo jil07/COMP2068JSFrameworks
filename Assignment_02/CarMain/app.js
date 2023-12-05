@@ -42,11 +42,11 @@ module.exports = app;
 
 // app.js or index.js
 
-const express = require('express');
+//const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 
-const app = express();
+//const app = express();
 
 // ... (other imports and configurations)
 
@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/public', require('./routes/public'));
 app.use('/auth', require('./routes/auth'));
-app.use('/cars', require('./routes/cars'));
+//app.use('/car', require('./routes/car'));
 
 // ... (other configurations)
 
