@@ -1,13 +1,34 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const passport = require('passport');
+const createError = require('http-errors');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./public/javascripts/users');
+// Connect to MongoDB
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+  }
+}
 
-var app = express();
+connectToDatabase();
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./public/javascripts/users');
+const carsRouter = require('./routes/car');
+const publicRouter = require('./routes/public');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,59 +40,46 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Setup express-session with mongoose as the session store
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: new (require('express-session').Store)({ mongooseConnection: mongoose.connection })
+  })
+);
+
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Middleware to check user authentication status
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
+// Use the routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', carsRouter);
+app.use('/', publicRouter);
 
-// catch 404 and forward to error handler
+// Your existing 404 and error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
-module.exports = app;
-
-// app.js or index.js
-
-//const express = require('express');
-const session = require('express-session');
-const passport = require('passport');
-
-//const app = express();
-
-// ... (other imports and configurations)
-
-// Middleware to check user authentication status
-app.use((req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-});
-
-// ... (other configurations)
-
-// Use the defined routes
-app.use('/', require('./routes/index'));
-app.use('/public', require('./routes/public'));
-app.use('/auth', require('./routes/auth'));
-//app.use('/car', require('./routes/car'));
-
-// ... (other configurations)
-
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-

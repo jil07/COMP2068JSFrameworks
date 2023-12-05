@@ -1,4 +1,5 @@
 // controllers/carController.js
+
 const Car = require('../Models/car');
 
 exports.getPrivatePage = async (req, res) => {
