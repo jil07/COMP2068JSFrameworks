@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -6,3 +7,30 @@ body {
 a {
   color: #00B7FF;
 }
+=======
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #ff0000;
+}
+
+h2 {
+  text-align: center;
+  color: #000000;
+  text-decoration: underline;
+}
+
+p {
+  text-align: center;
+  color: #000000;
+  font-size: 18px;
+  margin: 20px;
+}
+
+/* Add more styling here as needed */
+>>>>>>> 7dda939560db913a41fc9dcff576cc22e9be682a

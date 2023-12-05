@@ -1,0 +1,15 @@
+{
+    "name": "lab03",
+    "version": "1.0.0",
+    "description": "A simple Node.js math API calculator",
+    "main": "server.js",
+    "dependencies": {
+      "connect": "^3.7.0"
+    },
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Jil Patel",
+    "license": "MIT"
+  }
+  
